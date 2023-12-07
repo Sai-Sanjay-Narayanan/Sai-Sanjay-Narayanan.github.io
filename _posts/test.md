@@ -1,0 +1,7 @@
+### Testing some mathematics
+
+Here is inline equation: $\int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi}$ 
+
+Here is a standalone version: $$ \int_{-\infty}^{\infty} e^{-x^2} dx = \sqrt{\pi} $$
+
+Lets see how this goes
