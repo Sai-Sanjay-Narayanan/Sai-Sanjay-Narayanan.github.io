@@ -21,7 +21,7 @@ author: Sai Sanjay Narayanan
 
 navbar-links:
   About Me: "aboutme"
-  Test: "/testproject"
+  Test: "/testproject/test"
   #Resources:
   #  - Beautiful Jekyll: "https://beautifuljekyll.com"
   #  - Learn markdown: "https://www.markdowntutorial.com/"
