@@ -1,2 +1,2 @@
 # HELLO
-See this link right here: [Link]{./test.md}
+See this link right here: [Link]{/test.md}
