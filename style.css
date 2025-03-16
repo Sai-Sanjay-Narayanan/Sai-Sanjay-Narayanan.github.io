@@ -12,21 +12,6 @@ p {
   font-size: 20px;
 } */
 
-.saisanjay_website {
-  float:left;
-}
-
-.saisanjay_website > a {
-  font-size:30px;
-  font-family:sans-serif;
-  padding:14px
-}
-
-.saisanjay_website > a:hover {
-  color: blue;
-}
-
-
 .navigation {
   list-style-type: none;
   margin: 0;
