@@ -12,14 +12,26 @@ p {
   font-size: 20px;
 }
 
-ul {
+.navigation {
   list-style-type: none;
   margin: 0;
   padding: 20px;
+  background-color: #333
 }
 
-li {
-  display: inline;
+.navigation li {
+  float: right;
 }
 
+.navigation li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+.navigation li a:hover {
+  background-color: #111;
+}
 
