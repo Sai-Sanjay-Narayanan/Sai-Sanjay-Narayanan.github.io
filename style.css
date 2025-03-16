@@ -16,13 +16,13 @@ p {
   float:left;
 }
 
-.saisanjay_website a {
+.saisanjay_website > a {
   font-size:30px;
   font-family:sans-serif;
   padding:14px
 }
 
-.saisanjay_website a:hover {
+.saisanjay_website > a:hover {
   color: blue;
 }
 
@@ -34,11 +34,12 @@ p {
   overflow: hidden;
 }
 
-.navigation li {
+/* .navigation li {
   float: right;
 }
-
+ */
 .navigation li a {
+  float: right;
   display: block;
   text-align: center;
   padding: 14px 16px;
