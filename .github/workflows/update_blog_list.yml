@@ -1,0 +1,43 @@
+name: Update Blog List
+
+on:
+  push:
+    paths:
+      - "blogs/Math blogs/*.html"
+  workflow_dispatch: # Allows manual triggering from the GitHub Actions tab
+
+jobs:
+  update-blog-list:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
+      - name: Generate Blog List
+        run: |
+          echo "const mathBlogs = [" > blogs/blog_list.js
+          for file in blogs/Math\ blogs/*.html; do
+            title=$(basename "$file" .html | sed 's/-/ /g')
+            echo "    { title: \"${title^}\", url: \"$file\" }," >> blogs/blog_list.js
+          done
+          echo "];" >> blogs/blog_list.js
+          echo "function loadMathBlogs() {" >> blogs/blog_list.js
+          echo "    const container = document.getElementById(\"blog-list\");" >> blogs/blog_list.js
+          echo "    if (!container) return;" >> blogs/blog_list.js
+          echo "    mathBlogs.forEach(post => {" >> blogs/blog_list.js
+          echo "        const li = document.createElement(\"li\");" >> blogs/blog_list.js
+          echo "        li.innerHTML = `<a href=\"${post.url}\">${post.title}</a>`;" >> blogs/blog_list.js
+          echo "        container.appendChild(li);" >> blogs/blog_list.js
+          echo "    });" >> blogs/blog_list.js
+          echo "}" >> blogs/blog_list.js
+          echo "document.addEventListener(\"DOMContentLoaded\", loadMathBlogs);" >> blogs/blog_list.js
+
+      - name: Commit and Push Changes
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "actions@github.com"
+          git add blogs/blog_list.js
+          git commit -m "Auto-update blog list"
+          git push
+        continue-on-error: true
