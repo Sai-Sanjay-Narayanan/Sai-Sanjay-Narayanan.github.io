@@ -17,9 +17,11 @@ jobs:
       - name: Generate Blog List
         run: |
           echo "const mathBlogs = [" > blogs/blog_list.js
-          for file in blogs/Math\ blogs/*.html; do
-            title=$(basename "$file" .html | sed 's/-/ /g')
-            echo "    { title: \"${title^}\", url: \"$file\" }," >> blogs/blog_list.js
+          for file in "blogs/Math blogs/"*.html; do
+            [ -f "$file" ] || continue # Skip if no files exist
+            filename=$(basename "$file" .html)
+            title=$(echo "$filename" | sed 's/-/ /g' | awk '{print toupper(substr($0,1,1)) substr($0,2)}')
+            printf '    { title: "%s", url: "%s" },\n' "$title" "$file" >> blogs/blog_list.js
           done
           echo "];" >> blogs/blog_list.js
           echo "function loadMathBlogs() {" >> blogs/blog_list.js
