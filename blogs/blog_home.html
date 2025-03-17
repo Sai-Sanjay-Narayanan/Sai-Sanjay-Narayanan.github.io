@@ -1,6 +1,23 @@
 ---
-layout: default
+layout: blog_homepage_layout
 title: Blog Home
 ---
 
-<p> Under construction...</p>
+<p> Under construction...
+<h2 id="math-blogs-title" onclick="toggleMathBlogs()" style="cursor: pointer;">
+        Math Blogs
+    </h2>
+    
+    <ul id="math-blog-list">
+        <li><a href="blogs/math1.html">First Math Blog</a></li>
+        <li><a href="blogs/math2.html">Second Math Blog</a></li>
+        <li><a href="blogs/math3.html">Third Math Blog</a></li>
+    </ul>
+
+    <script>
+        function toggleMathBlogs() {
+            let blogList = document.getElementById("math-blog-list");
+            blogList.style.display = (blogList.style.display === "none" || blogList.style.display === "") ? "block" : "none";
+        }
+    </script>
+</p>
