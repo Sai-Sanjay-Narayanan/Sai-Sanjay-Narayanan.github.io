@@ -1,8 +1,8 @@
 body {
   background-color: #FFFFFF;
-  font-size: 1.31vw; 
-  margin-right: 1.31vw;
-  margin-left: 1.31vw;
+  font-size: max(1.31vw,1.31vh); 
+  margin-right: max(1.31vw,1.31vh);
+  margin-left: max(1.31vw,1.31vh);
 }
 
 /* h1 {
@@ -32,9 +32,9 @@ p {
   float: right;
   display: block;
   text-align: center;
-  padding: 5px 16px;
+  padding: max(0.33vw,0.33vh) max(1.05vw,1.05vh); /* 5px 16px */
   text-decoration: none;
-  font-size: 20px;
+  font-size: max(1.31vw,1.31vh);
   font-family: sans-serif;
 }
 
