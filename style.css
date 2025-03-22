@@ -35,3 +35,9 @@ p.proof {
   margin: 10px 10px;
   display: none;
 }
+
+.toggle-proof {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
