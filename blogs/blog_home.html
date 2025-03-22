@@ -12,6 +12,9 @@ title: Blog Home
     </ul>
 
 Hey there! This is for testing. Link to pdf: <a href="/muehlebach19a.pdf">here</a>
+<p onclick = "toggleProofs()" style="cursor:pointer;color:lightblue;">Proof:</p>
+<p class='proof' style="display:none"> 
+        It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done.
 </p>
     <script>
         function toggleMathBlogs() {
@@ -20,3 +23,9 @@ Hey there! This is for testing. Link to pdf: <a href="/muehlebach19a.pdf">here</
         }
     </script>
 
+   <script>
+        function toggleProofs() {
+            let proofList = document.getElementByClassName("proof");
+            proofList.style.display = (proofList.style.display === "none" || proofList.style.display === "") ? "block" : "none";
+        }
+    </script>
