@@ -30,9 +30,6 @@ It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done.
    <script>
         function toggleProofs() {
             let proofList = document.getElementsByClassName("proof");
-                for (let proof in proofList) {
-                        proof.style.display = (proof.style.display === "none" || proof.style.display === "") ? "block" : "none";
-                }
-            
+            proofList[0].style.display = (proofList[0].style.display === "none" || proofList[0].style.display === "") ? "block" : "none";
         }
     </script>
