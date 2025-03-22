@@ -31,5 +31,7 @@ body {
 p.proof {
   background-color: rgb(225,225,225);
   border-style: solid;
-  border-width: 2px;
+  border-width: 1.5px;
+  margin: 10px 10px;
+  display: none;
 }
