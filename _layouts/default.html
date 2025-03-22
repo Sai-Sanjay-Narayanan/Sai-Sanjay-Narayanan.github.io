@@ -33,6 +33,23 @@
       <li><a href = "/research/research.html">Research</a></li>
     </ul>
     {{ content }}
+    <script>
+        function toggleMathBlogs() {
+            let blogList = document.getElementById("math-blog-list");
+            blogList.style.display = (blogList.style.display === "none" || blogList.style.display === "") ? "block" : "none";
+        }
+    </script>
+
+    <script>
+        document.querySelectorAll(".toggle-proof").forEach(button => {
+            button.addEventListener("click", function() {
+                let proof = this.nextElementSibling; // Get the next element (the proof)
+                if (proof && proof.classList.contains("proof")) {
+                    proof.style.display = (proof.style.display === "none" || proof.style.display === "") ? "block" : "none";
+                }
+            });
+        });
+    </script>
   </body>
 </html>
 
