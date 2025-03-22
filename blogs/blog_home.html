@@ -17,27 +17,10 @@ It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done.
 </p>
 <p class = "toggle-proof">Proof:</p>
         <p class="proof"> 
-                It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done due to yoneda lemma gg.
+                It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done due to yoneda lemma gg op lesgo.
         </p>
 
 <p class = "toggle-proof">Proof:</p>
         <p class="proof"> 
                 It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done by the uniqueness principle $\int f(x)dx = 1$.
         </p>
-    <script>
-        function toggleMathBlogs() {
-            let blogList = document.getElementById("math-blog-list");
-            blogList.style.display = (blogList.style.display === "none" || blogList.style.display === "") ? "block" : "none";
-        }
-    </script>
-
-<script>
-        document.querySelectorAll(".toggle-proof").forEach(button => {
-            button.addEventListener("click", function() {
-                let proof = this.nextElementSibling; // Get the next element (the proof)
-                if (proof && proof.classList.contains("proof")) {
-                    proof.style.display = (proof.style.display === "none" || proof.style.display === "") ? "block" : "none";
-                }
-            });
-        });
-    </script>
