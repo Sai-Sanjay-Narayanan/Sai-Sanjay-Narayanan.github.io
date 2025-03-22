@@ -15,11 +15,10 @@ Hey there! This is for testing. Link to pdf: <a href="/muehlebach19a.pdf">here</
 <p class="proof"> 
 It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done.
 </p>
-<p onclick = "toggleProofs()" style="cursor:pointer;color:lightblue;">Proof:
+<p class = "toggle-proof">Proof:</p>
         <p class="proof"> 
                 It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done.
         </p>
-</p>
     <script>
         function toggleMathBlogs() {
             let blogList = document.getElementById("math-blog-list");
@@ -27,9 +26,13 @@ It is trivial that $\lVert x - y \rVert = \lVert x \rVert$, hence we are done.
         }
     </script>
 
-   <script>
-        function toggleProofs() {
-            let proofList = document.getElementsByClassName("proof");
-            proofList[0].style.display = (proofList[0].style.display === "none" || proofList[0].style.display === "") ? "block" : "none";
-        }
+<script>
+        document.querySelectorAll(".toggle-proof").forEach(button => {
+            button.addEventListener("click", function() {
+                let proof = this.nextElementSibling; // Get the next element (the proof)
+                if (proof && proof.classList.contains("proof")) {
+                    proof.style.display = (proof.style.display === "none" || proof.style.display === "") ? "block" : "none";
+                }
+            });
+        });
     </script>
