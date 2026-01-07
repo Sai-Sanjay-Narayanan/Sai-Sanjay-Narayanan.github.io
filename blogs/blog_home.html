@@ -4,19 +4,29 @@ title: Blog Home
 ---
 
 <p> Under construction...</p>
+
 <p id="math-blogs-title" onclick = "toggleBlogs('math-blog-list')" style = "cursor: pointer;">
         <b>Math Blogs</b> </p> 
-
-    
     <ul id="math-blog-list" style = "display:none;">
-        <li><a href="./math blogs/testblog1.html">First Math Blog</a></li>
-        <li><a href="./fokker_planck.html">Fokker Planck</a></li>
+        {% for post in site.mathblogs %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
     </ul> 
+
 <p id="physics-blogs-title" onclick = "toggleBlogs('physics-blog-list')" style = "cursor: pointer;">
         <b>Physics Blogs</b> </p> 
-    
     <ul id="physics-blog-list" style = "display:none;">
-        <li>First Physics Blog</li>
+        {% for post in site.physicsblogs %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
+    </ul>
+
+<p id="ai-blogs-title" onclick = "toggleBlogs('ai-blog-list')" style = "cursor: pointer;">
+        <b>AI Blogs</b> </p> 
+    <ul id="ai-blog-list" style = "display:none;">
+        {% for post in site.aiblogs %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+        {% endfor %}
     </ul>  
 
 Hey there! This is for testing. Link to pdf: <a href="/muehlebach19a.pdf">here</a>

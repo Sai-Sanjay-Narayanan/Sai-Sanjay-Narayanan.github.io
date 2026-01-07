@@ -3,7 +3,13 @@
 collections:
   mathblogs:
     output: true
-    permalink: /blogs/math-blogs/:name.html
+    permalink: /blogs/math/:name.html
+  physicsblogs:
+    output: true
+    permalink: /blogs/physics/:name.html
+  aiblogs:
+    output: true
+    permalink: /blogs/ai/:name.html
 
 # Set the markdown processor
 markdown: kramdown
