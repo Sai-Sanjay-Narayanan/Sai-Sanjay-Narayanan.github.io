@@ -4,12 +4,6 @@ collections:
   mathblogs:
     output: true
     permalink: /blogs/math-blogs/:name.html
-    # The directory for the collection
-    directory: blogs/math blogs
-
-# Include the collection folder in the build
-include:
-  - blogs/math blogs
 
 # Set the markdown processor
 markdown: kramdown
