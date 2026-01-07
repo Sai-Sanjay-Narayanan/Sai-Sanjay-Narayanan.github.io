@@ -9,13 +9,14 @@ This document provides a formal derivation of the Fokker-Planck equation startin
 ---
 
 ## 1. Markov Processes and Semigroups
-Assume a **time-homogeneous Markov Process** ($M-p$) with a semigroup $\{P_{t}\}$. For a function $f: \mathbb{R}^{d} \rightarrow \mathbb{R}$, the semigroup action is defined by:
+Assume a time-homogeneous Markov Process with a semigroup $\{P_{t}\}$. For a function $f: \mathbb{R}^{d} \rightarrow \mathbb{R}$, the semigroup action is defined by:
 
-$(P_{t}f)(X_{s}) = E[f(X_{t+s}) | \mathcal{F}_{s}]$$ 
+$$(P_{t}f)(X_{s}) = E[f(X_{t+s}) | \mathcal{F}_{s}]$$ 
 
 Taking the expectation on both sides yields:
-$$E[(P_{t}f)(X_{s})] = E[f(X_{t+s})]$$ 
-$$\int_{\mathbb{R}^{d}} (P_{t}f)(x)\mu_{s}(x)dx = \int f(x)\mu_{t+s}(x)dx$$ 
+$$E[(P_{t}f)(X_{s})] = E[f(X_{t+s})]$$
+
+$$\implies \int_{\mathbb{R}^{d}} (P_{t}f)(x)\mu_{s}(x)dx = \int f(x)\mu_{t+s}(x)dx$$ 
 
 ### Semigroup Properties
 The claim is that $P_{t+s}f = P_{s}(P_{t}f)$. We can verify this via:

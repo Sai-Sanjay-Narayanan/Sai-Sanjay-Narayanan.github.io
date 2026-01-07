@@ -2,7 +2,6 @@
 title: "VAE Notes"
 layout: default
 ---
-
 # Latent Generative Models
 
 The goal is to sample $x$ from a distribution $p(x)$ which we don't know, but we have access to a dataset $\{x_1, x_2, \cdots x_N\}$, where each $x_i$ is sampled independently from $p(x)$.
