@@ -22,7 +22,7 @@ can only be estimated using Monte-Carlo integration:
 
 $$p_{\theta}(x) \approx \frac{1}{M} \sum_{i=1}^{M} p_{\theta}(x\mid z_{i}), \quad z_{i} \sim r(z)$$
 
-One might think of using the above Monte-Carlo estimate for each $x_i$ in the training set, and then maximize the (estimated) empirical log-likelihood. But, this approach is wrong because if $`\hat{p}_\theta(x)`$ is the Monte-Carlo estimate of $p_\theta(x)$, then indeed 
+One might think of using the above Monte-Carlo estimate for each $x_i$ in the training set, and then maximize the (estimated) empirical log-likelihood. But, this approach is wrong because if $\hat{p}_\theta(x)$ is the Monte-Carlo estimate of $p_\theta(x)$, then indeed 
 
 $$\mathbb{E}_{z_i} [\hat{p}_\theta(x)] = p_\theta(x),$$
 
@@ -30,7 +30,7 @@ but
 
 $$\mathbb{E}_{z_i} \left[ \log \hat{p}_\theta(x) \right] \neq \log p_\theta(x),$$
 
-i.e. $`\log \hat{p}_\theta(x)`$ is not an unbiased estimate of $`\log p_\theta(x)`$. (in fact, by Jensen's inequality we have 
+i.e. $\log \hat{p}_\theta(x)$ is not an unbiased estimate of $\log p_\theta(x)$. (in fact, by Jensen's inequality we have 
 
 $$\mathbb{E}_{z_i} \left[ \log \hat{p}_\theta(x) \right] \leq \log p_\theta(x);$$
 
@@ -42,8 +42,8 @@ $$\log p_{\theta}(x)$$
 
 $$= \log \mathbb{E}_{z \sim r(z)} \left[ p_{\theta}(x\mid z) \right]$$
 
-$$\geq \mathbb{E}_{z \sim r(z)} \left[ \log p_{\theta}(x\mid z) \right]$$
-(from Jensen's Inequality)
+$$\geq \mathbb{E}_{z \sim r(z)} \left[ \log p_{\theta}(x\mid z) \right] \text{(from Jensen's Inequality)}$$
+
 
 and hence,
 
@@ -59,7 +59,7 @@ This looks nice, but it is actually not good. To see why, let us take a concrete
 
 $$\log p_{\theta}(x\mid z) \propto -\|x - \mu_{\theta}(z)\|^2$$
 
-and hence maximizing the lower bound is equivalent to minimizing $\mathbb{E}_{x,z} \left[ \|x - \mu_{\theta}(z)\|^2 \right]$
+and hence maximizing the lower bound is equivalent to minimizing $$\mathbb{E}_{x,z} \left[ \|x - \mu_{\theta}(z)\|^2 \right]$$
 
 and since $x$ and $z$ are sampled independently, the optimal solution is given by $\mu_{\theta}(z) = \mathbb{E}[x] \quad \forall z$. In other words, the model simply learns the expected value $\mathbb{E}[x]$ and samples from $\mathcal{N}(\mathbb{E}[x], \sigma^2 \mathcal{I})$, which could be vastly different from the actual distribution $p(\cdot)$.
 
