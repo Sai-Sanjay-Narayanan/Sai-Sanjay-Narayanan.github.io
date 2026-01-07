@@ -22,7 +22,7 @@ can only be estimated using Monte-Carlo integration:
 
 $$p_{\theta}(x) \approx \frac{1}{M} \sum_{i=1}^{M} p_{\theta}(x\mid z_{i}), \quad z_{i} \sim r(z)$$
 
-One might think of using the above Monte-Carlo estimate for each $x_i$ in the training set, and then maximize the (estimated) empirical log-likelihood. But, this approach is wrong because if $\hat{p}_\theta(x)$ is the Monte-Carlo estimate of $p_\theta(x)$, then indeed 
+One might think of using the above Monte-Carlo estimate for each $x_i$ in the training set, and then maximize the (estimated) empirical log-likelihood. But, this approach is wrong because if $`\hat{p}_\theta(x)`$ is the Monte-Carlo estimate of $p_\theta(x)$, then indeed 
 
 $$\mathbb{E}_{z_i} [\hat{p}_\theta(x)] = p_\theta(x),$$
 
@@ -30,7 +30,7 @@ but
 
 $$\mathbb{E}_{z_i} \left[ \log \hat{p}_\theta(x) \right] \neq \log p_\theta(x),$$
 
-i.e. $\log \hat{p}_\theta(x)$ is not an unbiased estimate of $\log p_\theta(x)$. (in fact, by Jensen's inequality we have 
+i.e. $`\log \hat{p}_\theta(x)`$ is not an unbiased estimate of $`\log p_\theta(x)`$. (in fact, by Jensen's inequality we have 
 
 $$\mathbb{E}_{z_i} \left[ \log \hat{p}_\theta(x) \right] \leq \log p_\theta(x);$$
 
