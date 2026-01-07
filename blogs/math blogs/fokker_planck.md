@@ -1,3 +1,7 @@
+# ---
+title: "Markov Processes and the Fokker-Planck Equation"
+layout: default
+---
 # Markov Processes and the Fokker-Planck Equation
 
 This document provides a formal derivation of the Fokker-Planck equation starting from Markov process semigroups and SDEs.
