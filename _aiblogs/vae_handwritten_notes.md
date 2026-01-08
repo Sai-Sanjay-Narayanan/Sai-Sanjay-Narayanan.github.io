@@ -8,7 +8,7 @@ The goal is to sample $x$ from a distribution $$p(x)$$ which we don't know, but 
 
 One way of doing this is to first sample $z$ from a known distribution $r(z)$ (say, a standard Gaussian), and then sample $x \sim p_{\theta}(x\mid z)$, where $p_{\theta}$ is a learned network; and ideally
 
-$$p(x) = p_{\theta}(x) := \mathbb{E}_{z \sim r(z)} \left[ p_{\theta}(x\mid z) \right]$$
+$$p(x) = p_{\theta}(x) := \mathbb{E}_{z \sim r(z)} \left[ p_{\theta}(x\mid z) \right].$$
 
 The standard way to learn such a network is to maximize the expected log-likelihood $\mathcal{L}(\theta)$, where
 
@@ -30,38 +30,23 @@ but
 
 $$\mathbb{E}_{z_i} \left[ \log \hat{p}_\theta(x) \right] \neq \log p_\theta(x),$$
 
-i.e. $\log \hat{p}_\theta(x)$ is not an unbiased estimate of $\log p_\theta(x)$. (in fact, by Jensen's inequality we have 
-
-$$\mathbb{E}_{z_i} \left[ \log \hat{p}_\theta(x) \right] \leq \log p_\theta(x);$$
-
-this also foreshadows the upcoming trick:)
+i.e. $$\log \hat{p}_\theta(x)$$ is not an unbiased estimate of $\log p_\theta(x)$. (in fact, by Jensen's inequality we have $$\mathbb{E}_{z_i} \left[ \log \hat{p}_\theta(x) \right] \leq \log p_\theta(x);$$ this also foreshadows the upcoming trick. )
 
 ∴ The alternate approach is to consider a lower bound on $\log p_{\theta}(x)$:
 
-$$\log p_{\theta}(x)$$
-
-$$= \log \mathbb{E}_{z \sim r(z)} \left[ p_{\theta}(x\mid z) \right]$$
-
-$$\geq \mathbb{E}_{z \sim r(z)} \left[ \log p_{\theta}(x\mid z) \right] \text{(from Jensen's Inequality)}$$
-
+$$\log p_{\theta}(x) = \log \mathbb{E}_{z \sim r(z)} \left[ p_{\theta}(x\mid z) \right] \geq \mathbb{E}_{z \sim r(z)} \left[ \log p_{\theta}(x\mid z) \right] \text{(from Jensen's Inequality)} $$
 
 and hence,
 
-$$\mathcal{L}(\theta) = \mathbb{E}_{x \sim p(x)} \left[ \log p_{\theta}(x) \right]$$
+$$\mathcal{L}(\theta) = \mathbb{E}_{x \sim p(x)} \left[ \log p_{\theta}(x) \right] \geq \mathbb{E}_{x \sim p(x), z \sim r(z)} \left[ \log p_{\theta}(x\mid z) \right],$$
 
-$$\geq \mathbb{E}_{x \sim p(x), z \sim r(z)} \left[ \log p_{\theta}(x\mid z) \right],$$
-
-and so one might think of maximizing the lower bound
-
-instead of $\mathcal{L}(\theta)$.
+and so one might think of maximizing the lower bound instead of $\mathcal{L}(\theta)$.
 
 This looks nice, but it is actually not good. To see why, let us take a concrete example: Suppose $p_{\theta}(x\mid z)$ is modelled as a normal distribution $\mathcal{N}(\mu_{\theta}(z), \sigma^2 \mathcal{I})$. Then,
 
 $$\log p_{\theta}(x\mid z) \propto -\|x - \mu_{\theta}(z)\|^2$$
 
-and hence maximizing the lower bound is equivalent to minimizing $$\mathbb{E}_{x,z} \left[ \|x - \mu_{\theta}(z)\|^2 \right]$$
-
-and since $x$ and $z$ are sampled independently, the optimal solution is given by $\mu_{\theta}(z) = \mathbb{E}[x] \quad \forall z$. In other words, the model simply learns the expected value $\mathbb{E}[x]$ and samples from $\mathcal{N}(\mathbb{E}[x], \sigma^2 \mathcal{I})$, which could be vastly different from the actual distribution $p(\cdot)$.
+and hence maximizing the lower bound is equivalent to minimizing $$\mathbb{E}_{x,z} \left[ \|x - \mu_{\theta}(z)\|^2 \right]$$. And since $x$ and $z$ are sampled independently, the optimal solution is given by $\mu_{\theta}(z) = \mathbb{E}[x] \quad \forall z$. In other words, the model simply learns the expected value $\mathbb{E}[x]$ and samples from $\mathcal{N}(\mathbb{E}[x], \sigma^2 \mathcal{I})$, which could be vastly different from the actual distribution $p(\cdot)$.
 
 Example:
 
@@ -79,27 +64,19 @@ $$p_{\theta}(x) = \mathbb{E}_{z \sim q_{\phi}(z\mid x)} \left[ p_{\theta}(x\mid 
 
 and by Jensen,
 
-$$\log p_{\theta}(x)$$
-
-$$\geq \mathbb{E}_{z \sim q_{\phi}(z\mid x)} \left[ \log p_{\theta}(x\mid z) + \log \frac{r(z)}{q_{\phi}(z\mid x)} \right],$$
+$$\log p_{\theta}(x) \geq \mathbb{E}_{z \sim q_{\phi}(z\mid x)} \left[ \log p_{\theta}(x\mid z) + \log \frac{r(z)}{q_{\phi}(z\mid x)} \right],$$
 
 and hence
 
-$$\mathcal{L}(\theta) \geq \mathbb{E}_{x,z} \left[ \log p_{\theta}(x\mid z) \right]$$
+$$\mathcal{L}(\theta) \geq \mathbb{E}_{x,z} \left[ \log p_{\theta}(x\mid z) \right]- \mathbb{E}_{x} \left[ \mathbb{D}_{KL} \left( q_{\phi}(\cdot\mid x) \| r(\cdot) \right) \right]$$
 
-$$- \mathbb{E}_{x} \left[ \mathbb{D}_{KL} \left( q_{\phi}(\cdot\mid x) \| r(\cdot) \right) \right]$$
-
-where $(x, z) \sim p(x) q_{\phi}(z\mid x)$, i.e. they are no longer independently sampled. We can now maximize the RHS over $(\theta, \phi)$, and this is strictly better than the previous approach (indeed, if the space of all $q_{\phi}$ is rich enough, then it presumably
-
-contains $r(\cdot)$ as well.)
+where $(x, z) \sim p(x) q_{\phi}(z\mid x)$, i.e. they are no longer independently sampled. We can now maximize the RHS over $(\theta, \phi)$, and this is strictly better than the previous approach (indeed, if the space of all $q_{\phi}$ is rich enough, then it presumably contains $r(\cdot)$ as well.)
 
 We now analyze the two terms present in the lower bound, and see what maximizing each of them individually achieves, with an example.
 
 The first term is
 
-$$\mathbb{E}_{x,z} \left[ \log p_{\theta}(x\mid z) \right]$$
-
-$$\propto \mathbb{E}_{x,z} \left[ -\|x - \mu_{\theta}(z)\|^2 \right]$$
+$$\mathbb{E}_{x,z} \left[ \log p_{\theta}(x\mid z) \right] \propto \mathbb{E}_{x,z} \left[ -\|x - \mu_{\theta}(z)\|^2 \right]$$
 
 Now, if we parameterize $q_{\phi}(z\mid x)$ as $\mathcal{N}(\lambda_{\phi}(x), \Delta^2 \mathcal{I})$, then
 
@@ -113,7 +90,7 @@ where $\varepsilon \sim \mathcal{N}(0, \mathcal{I})$ is independent of $x$.
 
 $$\mathbb{E}_{x,\varepsilon} \left[ \|x - \mu_{\theta}(\lambda_{\phi}(x) + \Delta \varepsilon)\|^2 \right]$$
 
-where $x \perp\!\!\!\perp \varepsilon$.
+where $x$ is independent of $\varepsilon$.
 
 If we take the extreme example of $\Delta = 0$, then the optimal $(\theta, \phi)$ would satisfy
 
