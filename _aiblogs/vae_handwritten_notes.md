@@ -4,7 +4,7 @@ layout: default
 ---
 # Latent Generative Models
 
-The goal is to sample $x$ from a distribution $p(x)$ which we don't know, but we have access to a dataset $\{x_{1}, x_{2}, \cdots x_{N}\}$, where each $x_{i}$ is sampled independently from $p(x)$.
+The goal is to sample $x$ from a distribution $$p(x)$$ which we don't know, but we have access to a dataset $\{x_{1}, x_{2}, \cdots x_{N}\}$, where each $x_{i}$ is sampled independently from $p(x)$.
 
 One way of doing this is to first sample $z$ from a known distribution $r(z)$ (say, a standard Gaussian), and then sample $x \sim p_{\theta}(x\mid z)$, where $p_{\theta}$ is a learned network; and ideally
 
