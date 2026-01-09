@@ -18,6 +18,12 @@ $$E[(P_{t}f)(X_{s})] = E[f(X_{t+s})]$$
 
 $$\implies \int_{\mathbb{R}^{d}} (P_{t}f)(x)\mu_{s}(x)dx = \int f(x)\mu_{t+s}(x)dx$$ 
 
+$$\begin{align}
+&E[(P_{t}f)(X_{s})] = E[f(X_{t+s})] \\
+\implies &\int_{\mathbb{R}^{d}} (P_{t}f)(x)\mu_{s}(x)dx = \int f(x)\mu_{t+s}(x)dx
+\end{align}
+$$
+
 ### Semigroup Properties
 The claim is that $P_{t+s}f = P_{s}(P_{t}f)$. We can verify this via:
 $$P_{t+s}f(X_{0}) = E[f(X_{t+s})|X_{0}]$$ 
