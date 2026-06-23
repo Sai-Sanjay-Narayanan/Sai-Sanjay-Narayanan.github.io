@@ -33,9 +33,13 @@
     </ul>
     {{ content }}
 
+    {% assign updated_at = page.updated | default: page.last_updated | default: page.date | default: site.time %}
     <p class="last-updated">
       Updated on:
-      <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: "%B %-d, %Y at %-I:%M %p" }}</time>
+      <time
+        datetime="{{ updated_at | date_to_xmlschema }}"
+        data-page-updated="{% if page.updated or page.last_updated or page.date %}true{% else %}false{% endif %}"
+      >{{ updated_at | date: "%B %-d, %Y at %-I:%M %p" }}</time>
     </p>
 
     <script>
@@ -59,8 +63,9 @@
     <script>
         const lastUpdated = document.querySelector(".last-updated time");
         const modifiedDate = new Date(document.lastModified);
+        const hasPageUpdatedDate = lastUpdated && lastUpdated.dataset.pageUpdated === "true";
 
-        if (lastUpdated && !Number.isNaN(modifiedDate.getTime())) {
+        if (lastUpdated && !hasPageUpdatedDate && !Number.isNaN(modifiedDate.getTime())) {
             lastUpdated.dateTime = modifiedDate.toISOString();
             lastUpdated.textContent = modifiedDate.toLocaleString(undefined, {
                 year: "numeric",
