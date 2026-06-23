@@ -97,3 +97,12 @@ p.proof {
     cursor: pointer;
     text-decoration: underline;
 }
+
+.last-updated {
+  border-top: 1px solid rgb(203,209,199);
+  color: #555;
+  font-family: sans-serif;
+  font-size: 0.9rem;
+  margin-top: 40px;
+  padding-top: 12px;
+}

@@ -32,6 +32,12 @@
       <li><a href = "/research/research.html">Research</a></li>
     </ul>
     {{ content }}
+
+    <p class="last-updated">
+      Updated on:
+      <time datetime="{{ site.time | date_to_xmlschema }}">{{ site.time | date: "%B %-d, %Y at %-I:%M %p" }}</time>
+    </p>
+
     <script>
         function toggleBlogs(blogID) {
             let blogList = document.getElementById(blogID);
@@ -48,6 +54,22 @@
                 }
             });
         });
+    </script>
+
+    <script>
+        const lastUpdated = document.querySelector(".last-updated time");
+        const modifiedDate = new Date(document.lastModified);
+
+        if (lastUpdated && !Number.isNaN(modifiedDate.getTime())) {
+            lastUpdated.dateTime = modifiedDate.toISOString();
+            lastUpdated.textContent = modifiedDate.toLocaleString(undefined, {
+                year: "numeric",
+                month: "long",
+                day: "numeric",
+                hour: "numeric",
+                minute: "2-digit"
+            });
+        }
     </script>
 
   </body>
