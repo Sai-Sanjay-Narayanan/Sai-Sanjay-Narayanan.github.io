@@ -28,11 +28,11 @@ The question now is: how do we come up with such a cubic polynomial? Here we hav
 
 We now return to the original subject, namely Cantelli's inequality. This is often motivated as a tighter version for Chebyshev's inequality for one-sided tail bounds. So, we must first understand Chebyshev's inequality.
 
-Chebyshev's inequality gives us an upper bound for $\mathbb{P}(|X - \mu| \geq \lambda)$, where $\mu = \mathbb{E}[X]$ , using second moments. By simply applying Markov's inequality to the non-negative random variable $(X - \mu)^2$, we get the upper bound $\frac{\text{Var}(X)}{\lambda^2}$ (note that $\text{Var}(X) = \mathbb{E}[ (X - \mu)^2 ]$). However, we get a little more insight using the picture based derivation:
+Chebyshev's inequality gives us an upper bound for $\mathbb{P}(\mid X - \mu \mid \geq \lambda)$, where $\mu = \mathbb{E}[X]$ , using second moments. By simply applying Markov's inequality to the non-negative random variable $(X - \mu)^2$, we get the upper bound $\frac{\text{Var}(X)}{\lambda^2}$ (note that $\text{Var}(X) = \mathbb{E}[ (X - \mu)^2 ]$). However, we get a little more insight using the picture based derivation:
 
 ![Chebyshev inequality depiction](/assets/blogs/cantelli_inequality/chebyshev_depiction.svg)
 
-In particular, we observe that the quadratic $f(x) = (x - \mu)^2 / \lambda^2 $ upper bounds _both_ the tails $1(x - \mu \geq \lambda)$ and $1(x - \mu \leq -\lambda)$, which is what allows us to get the required upper bound for $\mathbb{P}(|X - \mu| \geq \lambda)$. Obviously, Chebshev's upper bound is also an upper bound for each of the individual tail probabilities $\mathbb{P}(X - \mu \geq \lambda)$ and $\mathbb{P}(X - \mu \leq -\lambda)$.
+In particular, we observe that the quadratic $f(x) = (x - \mu)^2 / \lambda^2 $ upper bounds _both_ the tails $1(x - \mu \geq \lambda)$ and $1(x - \mu \leq -\lambda)$, which is what allows us to get the required upper bound for $\mathbb{P}(\mid X - \mu \mid \geq \lambda)$. Obviously, Chebshev's upper bound is also an upper bound for each of the individual tail probabilities $\mathbb{P}(X - \mu \geq \lambda)$ and $\mathbb{P}(X - \mu \leq -\lambda)$.
 
 Now we ask: what if I am not interested in upper bounding both the tail probabilities? What if I want to just upper bound the right tail, i.e. $\mathbb{P}(X - \mu \geq \lambda)$? Is there a better upper bound involving second moment? It turns out the answer is yes, and this is the content of Cantelli's inequality.
 
@@ -60,6 +60,6 @@ Clearly, $\phi'(c)=0$ when $c = \frac{V}{\lambda}$, and since the denominator $(
 
 Finally, substituting this $c$ into the upper bound gives us Cantelli's inequality:
 
-$$\begin{align}
-\boxed{\mathbb{P}(X \geq \mu + \lambda) &= \frac{V}{V + \lambda^2}}
-\end{align}$$
+$$\boxed{\begin{align}
+\mathbb{P}(X \geq \mu + \lambda) &= \frac{V}{V + \lambda^2}
+\end{align}}$$
