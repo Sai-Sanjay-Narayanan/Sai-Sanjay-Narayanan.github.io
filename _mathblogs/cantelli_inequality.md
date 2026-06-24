@@ -12,7 +12,7 @@ We will illustrate this principle with some pictures. To start with, let $g(x) =
 ![Comparison of x over lambda and indicator function](/assets/blogs/cantelli_inequality/indicator-vs-linear.svg)
 
 As we can clearly see, $f(x) \geq g(x)$ for all $x \geq 0$. Thus, if $X$ is a non-negative random variable, we have $\mathbb{E}[ f(X) ] \geq \mathbb{E}[ g(X) ]$, which in this case gives the well known Markov's inequality:
-$$\boxed{ \mathcal{P}(X \geq 0) \leq \frac{\mathbb{E}[X]}{\lambda} } $$
+$$\boxed{ \mathbb{P}(X \geq 0) \leq \frac{\mathbb{E}[X]}{\lambda} } $$
 
 The picture based derivation is useful because not only does it allow us to generalize, it also gives us an intuition for how good the bound is. For instance, if most of the probability mass happens to lie on those $x$ where $f(x)$ is significantly larger than $g(x)$ (in the case of Markov, for very large $x$), then we expect that the resulting bound will not be very good.
 
@@ -26,5 +26,15 @@ The question now is: how do we come up with such a cubic polynomial? Here we hav
 
 ## Cantelli's Inequality
 
+We now return to the original subject, namely Cantelli's inequality. This is often motivated as a tighter version for Chebyshev's inequality for one-sided tail bounds. So, we must first understand Chebyshev's inequality.
 
+Chebyshev's inequality gives us an upper bound for $\mathbb{P}(|X - \mu| \geq \lambda)$, where $\mu = \mathbb{E}[X]$ , using second moments. By simply applying Markov's inequality to the non-negative random variable $(X - \mu)^2$, we get the upper bound $\frac{\text{Var}(X)}{\lambda^2}$ (note that $\text{Var}(X) = \mathbb{E}[ (X - \mu)^2 ]$). However, we get a little more insight using the picture based derivation:
+
+![Chebyshev inequality depiction](/assets/blogs/cantelli_inequality/chebyshev_depiction.svg)
+
+In particular, we observe that the quadratic $f(x) = (x - \mu)^2 / \lambda^2 $ upper bounds _both_ the tails $1(x - \mu \geq \lambda)$ and $1(x - \mu \leq -\lambda)$, which is what allows us to get the required upper bound for $\mathbb{P}(|X - \mu| \geq \lambda)$. Obviously, Chebshev's upper bound is also an upper bound for each of the individual tail probabilities $\mathbb{P}(X - \mu \geq \lambda)$ and $\mathbb{P}(X - \mu \leq -\lambda)$.
+
+Now we ask: what if I am not interested in upper bounding both the tail probabilities? What if I want to just upper bound the right tail, i.e. $\mathbb{P}(X - \mu \geq \lambda)$? Is there a better upper bound involving second moment? It turns out the answer is yes, and this is the content of Cantelli's inequality.
+
+Let us first try to get an intuition for why we may expect a better upper bound for the single tail. The reader may first observe that  $f(x) = (x - \mu)^2 / \lambda^2 $ is _not_ the only quadratic that upper bounds the right tail, as seen in the following picture:
 
