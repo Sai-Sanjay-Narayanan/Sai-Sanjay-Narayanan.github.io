@@ -12,7 +12,7 @@ We will illustrate this principle with some pictures. To start with, let $g(x) =
 ![Comparison of x over lambda and indicator function](/assets/blogs/cantelli_inequality/indicator-vs-linear.svg)
 
 As we can clearly see, $f(x) \geq g(x)$ for all $x \geq 0$. Thus, if $X$ is a non-negative random variable, we have $\mathbb{E}[ f(X) ] \geq \mathbb{E}[ g(X) ]$, which in this case gives the well known Markov's inequality:
-$$\boxed{ \mathbb{P}(X \geq 0) \leq \frac{\mathbb{E}[X]}{\lambda} } $$
+$$\boxed{ \mathbb{P}(X \geq \lambda) \leq \frac{\mathbb{E}[X]}{\lambda} } $$
 
 The picture based derivation is useful because not only does it allow us to generalize, it also gives us an intuition for how good the bound is. For instance, if most of the probability mass happens to lie on those $x$ where $f(x)$ is significantly larger than $g(x)$ (in the case of Markov, for very large $x$), then we expect that the resulting bound will not be very good.
 
