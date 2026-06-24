@@ -36,5 +36,30 @@ In particular, we observe that the quadratic $f(x) = (x - \mu)^2 / \lambda^2 $ u
 
 Now we ask: what if I am not interested in upper bounding both the tail probabilities? What if I want to just upper bound the right tail, i.e. $\mathbb{P}(X - \mu \geq \lambda)$? Is there a better upper bound involving second moment? It turns out the answer is yes, and this is the content of Cantelli's inequality.
 
-Let us first try to get an intuition for why we may expect a better upper bound for the single tail. The reader may first observe that  $f(x) = (x - \mu)^2 / \lambda^2 $ is _not_ the only quadratic that upper bounds the right tail, as seen in the following picture:
+Let us first try to get an intuition for why we may expect a better upper bound for the single tail. The key insight that  $f(x) = (x - \mu)^2 / \lambda^2 $ is _not_ the only quadratic that upper bounds the right tail, as seen in the following picture:
 
+![Cantelli intuition plot](/assets/blogs/cantelli_inequality/cantelli_intuition.svg)
+
+Here, the blue curve is the quadratic used to obtain Chebyshev's bound, while the orange curve is a quadratic whose zero point is shifted from $\mu$ to $\mu - c$ for some positive $c$. Why might we expect the orange curve to result in a better bound? Intuitively, if the variance of $X$ is large, then the probability mass extends a lot in the right tail, and so we want the quadratic to not be so "steep" to give us a tighter bound. In fact, by extending this logic, we would expect the optimal shift $c$ to increase as the variance increases.
+
+We will now work out the fairly simple algebra to compute the optimal shift $c$ for a given random variable $X$ with finite variance $V := \text{Var}(X)$. Letting $f(x) = \frac{(x - \mu + c)^2}{(\lambda + c)^2}$ for some $c > -\lambda$ and noting that $f(x) \geq 1(x \geq \mu + \lambda)$, we obtain
+
+$$\begin{align}
+\mathbb{P}(X \geq \mu + \lambda) \leq \frac{\mathbb{E}[(X - \mu + c)^2]}{(\lambda + c)^2} = \frac{V + c^2}{(\lambda + c)^2}.
+\end{align}$$
+
+Denoting the RHS as $\phi(c)$, we want to find the $c > -\lambda$ that minimizes $\phi(c)$ to get the tightest possible bound. We compute
+
+$$ \begin{align}
+\phi'(c) &= \frac{(\lambda + c)^2 \cdot 2c - (V + c^2) \cdot 2(\lambda + c) }{(\lambda + c)^4} \\
+&= \frac{2(\lambda c - V)}{(\lambda + c)^3}
+\end{align}
+$$
+
+Clearly, $\phi'(c)=0$ when $c = \frac{V}{\lambda}$, and since the denominator $(\lambda + c)^3 > 0$ for all $c > -\lambda$ and the numerator is linear and increasing in $c$, we conclude that $c = \frac{V}{\lambda}$ corresponds to a local (and in this case, global) minimum for $\phi(c)$. We remark that the optimal $c$ matches our previous intuition: higher the variance, the larger the shift in the quadratic must be.
+
+Finally, substituting this $c$ into the upper bound gives us Cantelli's inequality:
+
+$$\begin{align}
+\boxed{\mathbb{P}(X \geq \mu + \lambda) &= \frac{V}{V + \lambda^2}}
+\end{align}$$
